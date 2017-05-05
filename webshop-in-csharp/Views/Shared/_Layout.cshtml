@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -26,9 +28,18 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li class="active"><a href="@Url.Action("Index", "Home")">Home</a></li>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li><a href="@Url.Action("Edit", "Profile")">My Profile</a></li>
+                        <li><a href ="@Url.Action("Search", "Profile")">Search</a></li>
+
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("Register", "Account")">Register account</a></li>
+                        <li><a href="@Url.Action("Login", "Account")">Login</a></li>
+                    }
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -41,5 +52,10 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    @RenderSection("Scripts", false)
 </body>
 </html>
