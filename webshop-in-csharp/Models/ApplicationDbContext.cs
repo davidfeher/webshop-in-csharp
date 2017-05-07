@@ -23,5 +23,7 @@ namespace WebshopInCsharp.Models
         public DbSet<ProductCategory> Category { get; set; }
 
         public DbSet<Supplier> Supplier { get; set; }
+
+        public DbSet<WebshopInCsharp.Models.ProductSearchResultModel> ProductSearchResultModel { get; set; }
     }
 }
