@@ -35,10 +35,7 @@
                         <li><a href ="@Url.Action("Search", "Profile")">Search</a></li>
                         <li><a>@User.Identity.Name</a></li>
 
-                        @if (SignInManager.IsSignedIn(User))
-                        {
-                            <li class="pull-right"><button class="btn btn-default"><a href="@Url.Action("Logout", "Account")">Logout</a></button> </li>
-                        }
+                        
 
 
                     }
@@ -49,6 +46,10 @@
                     }
                 </ul>
 
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <li class="pull-right"><button class="btn btn-default"><a href="@Url.Action("Logout", "Account")">Logout</a></button> </li>
+                }
             </div><!--/.nav-collapse -->
         </div>
 
